@@ -27,14 +27,12 @@ class ProductManagement {
     } else {
       var data = { products: [], query: { ...query } }
       var sort = {}
-      console.log(query)
       if(query.date !== '0'){
         sort.date = +query.date
       }
       if(query.price !== '0'){
         sort.price = +query.price
       }
-      console.log(sort)
       const [result, itemCount] = await Promise.all([
         Product.find({}).limit(query.limit).sort(sort).skip(query.skip).lean().exec(),
         Product.countDocuments({})
