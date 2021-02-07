@@ -1,0 +1,28 @@
+extends layouts/layout.pug
+
+block head
+  include parts/head.pug
+
+block content
+  include parts/filter.pug
+  div(class="content")
+    div(class="product")
+      if data.products.length > 0
+        each prod in data.products
+          div(class="cart")
+            div(class="cart-header") #{prod.name}
+            div(class="cart-body")
+              div(class="cart-body_img")
+                img(src="/img/product/" + prod.imgName, alt=prod.name)
+              div(class="cart-body_desc") #{prod.desc.substr(0, 50)}
+              div(class="cart-body_price") #{prod.price.toFixed(2)} руб.
+            div(class="cart-footer")
+              a(class="cart-footer__add" href="#") В корзину
+              a(class="cart-footer__see" href="#") Подробнее
+      else 
+        span(class="not-faund") Записей не найдено
+      if data.query.pages.length > 1
+        include parts/pagination.pug
+
+block foot
+  include parts/foot.pug

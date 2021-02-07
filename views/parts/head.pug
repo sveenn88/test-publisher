@@ -1,0 +1,11 @@
+div(class="head")
+  div(class="logo")
+    h3 
+      a(href="/") Celestial Body Shop
+  div(class="block-auth")
+    if token
+      h3(class="block-auth_hi") Привет, #{token.login}!
+      a(href="/admin" target="_blank" class="block-auth_lk-btn") Админка
+      a(href="/logout" class="block-auth_login-btn") Выйти
+    else
+      a(href="/login" class="block-auth_login-btn") Войти

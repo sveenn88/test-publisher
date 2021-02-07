@@ -1,0 +1,11 @@
+div(class="head")
+  div(class="logo")
+    h3 
+      a(href="/") На главную сайта
+      a(href="/admin") AdminkaHome
+  div(class="block-auth")
+    if token
+      h3(class="block-auth_hi") #{token.login}, ты в админке))
+      a(href="/logout" class="block-auth_login-btn") Выйти
+    else
+      a(href="/login" class="block-auth_login-btn") Войти

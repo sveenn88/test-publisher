@@ -1,0 +1,44 @@
+div(class="filter-box")
+  form(class="form-filter" method="GET" action="/")
+
+    div(class="page-size-box")
+      label(for="limit") Кол-во
+      input(class="form-filter_page-size" type="text" name="limit" value=`${data.query.limit ? data.query.limit : 10}` required)
+
+    div(class="price-box")
+      label(for="price") Цена
+      select(class="form-filter_price" type="text" name="price")
+        if data.query.price == '0'
+          option(value="0" selected=true)
+        else
+          option(value="0")
+
+        if data.query.price == '-1'
+          option(value="-1" selected=true) Дороже
+        else
+          option(value="-1") Дороже
+
+        if data.query.price == '1'
+          option(value="1" selected=true) Дешевле
+        else
+          option(value="1") Дешевле
+
+    div(class="date-box")
+      label(for="date") Дата
+      select(class="form-filter_date" type="text" name="date")
+        if data.query.date == '0'
+          option(value="0" selected=true)
+        else
+          option(value="0")
+
+        if data.query.date == '-1'
+          option(value="-1" selected=true) Раньше
+        else
+          option(value="-1") Раньше
+
+        if data.query.date == '1'
+          option(value="1" selected=true) Позже
+        else
+          option(value="1") Позже
+    
+    button(class="form-login_submit" type="submit") Применить

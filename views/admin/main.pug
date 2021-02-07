@@ -1,0 +1,31 @@
+extends ../layouts/layout_admin.pug
+
+block head
+  include ../parts/admin/head.pug
+  include ../parts/admin/filter.pug
+block actions
+  include ../parts/admin/actions.pug
+block content
+  div(class="content")
+    div(class="product")
+      div(class="product-table")
+        if data.products.length > 0
+          each prod in data.products
+            div(class="product-table_item")
+              div(class="img")
+                img(src="/img/product/" + prod.imgName, alt="")
+              div(class="info")
+                span(class="info_article") #{prod.article}
+                h3(class="info_name") Название: #{prod.name}
+                p(class="info_desc") Описание: #{prod.desc.substr(0, 50)}
+              div(class="price") Цена: #{prod.price.toFixed(2)} руб
+              div(class="actions")
+                a(href="/admin/edit/" + prod._id class="actions_edit") edit
+                a(href="/admin/delete/" + prod._id class="actions_delete") delete
+        else 
+          span(class="not-faund") Записей не найдено
+      if data.query.pages.length > 1
+        include ../parts/pagination.pug 
+
+block foot
+  include ../parts/foot.pug

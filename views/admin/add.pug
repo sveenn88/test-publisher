@@ -1,0 +1,42 @@
+extends ../layouts/layout_admin.pug
+
+block head
+  include ../parts/admin/head.pug
+block actions
+  include ../parts/admin/actions.pug
+block content
+  div(class="content")
+    if result
+      if result._id
+        div(class="success") Добавил
+      if result.error
+        div(class="error") Ошибка
+    div(class="product-box")
+      div(class="product-box_top") Форма для нового товара
+      div(class="product-box_body")
+        form(class="form-product" method="POST" action="/admin/add" enctype="multipart/form-data")
+
+          label(for="img") Изображение (.jpg, .jpeg, .png)
+          input(class="form-product_img" type="file" accept=".jpg,.jpeg,.png" name="img" required)
+          if errorForm !== null && errorForm.img
+            div(class="form-product_error") #{errorForm.img}
+
+          label(for="name") Name
+          input(class="form-product_name" type="text" name="name" autofocus required)
+          if errorForm !== null && errorForm.name
+            div(class="form-product_error") #{errorForm.name}
+
+          label(for="desc") description
+          textarea(class="form-product_desc" name="desc" required)
+          if errorForm !== null && errorForm.desc
+            div(class="form-product_error") #{errorForm.desc}
+
+          label(for="price") price
+          input(class="form-product_price" type="number" name="price" required)
+          if errorForm !== null && errorForm.price
+            div(class="form-product_error") #{errorForm.price}
+
+          button(class="form-product_submit" type="submit") ADD
+
+block foot
+  include ../parts/foot.pug

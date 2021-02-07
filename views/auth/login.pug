@@ -1,0 +1,23 @@
+extends ../layouts/layout.pug
+
+block head
+  include ../parts/head.pug
+
+block content
+  div(class="content")
+    div(class="login-box")
+      div(class="login-box_top") Log in to shop
+      div(class="login-box_body")
+        form(class="form-login" method="POST" action="/login")
+          label(for="username") login
+          input(class="form-login_username" type="text" name="username" autofocus required)
+          if errorForm !== null && errorForm.username
+            div(class="form-login_error") #{errorForm.username}
+          label(for="password") password
+          input(class="form-login_password" type="password" name="password" required)
+          if errorForm !== null && errorForm.password
+            div(class="form-login_error") #{errorForm.password}
+          button(class="form-login_submit" type="submit") login
+
+block foot
+  include ../parts/foot.pug

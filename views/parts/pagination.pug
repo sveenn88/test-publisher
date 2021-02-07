@@ -1,0 +1,19 @@
+div(class="pagination")
+  div(class="prev")
+    if data.query.prevlink
+      a(href=`/admin?page=${data.query.prevlink}${data.query.limit ? `&limit=${data.query.limit}`: ''}${!!data.query.date ? `&date=-1`: ''}${!!data.query.price ? `&price=-1`: ''}`) Назад
+    else 
+      span Назад
+
+  div(class="pages")
+    each page in data.query.pages
+      if page.number == data.query.activePage
+        span(class="pages_active") #{page.number}
+      else
+        a(href=page.url) #{page.number}
+
+  div(class="next")
+    if data.query.nextlink
+      a(href=`/admin?page=${data.query.nextlink}${data.query.limit ? `&limit=${data.query.limit}`: ''}${!!data.query.date ? `&date=-1`: ''}${!!data.query.price ? `&price=-1`: ''}`) Вперед
+    else 
+      span Вперед
